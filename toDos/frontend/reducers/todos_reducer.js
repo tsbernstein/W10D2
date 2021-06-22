@@ -1,5 +1,6 @@
 import { RECEIVE_TODOS } from '../actions/todo_actions'
 import { RECEIVE_TODO } from '../actions/todo_actions'
+import { REMOVE_TODO } from '../actions/todo_actions'
 
 const initialState = {
     1: {
@@ -19,9 +20,9 @@ const initialState = {
 
 
 const todosReducer = (state = initialState, action) => {
-  debugger
+    debugger;
   Object.freeze(state)
-  const newState = Object.assign({},state);
+  const nextState = Object.assign({},state);
     switch (action.type) {
       
       case RECEIVE_TODOS:
@@ -29,27 +30,15 @@ const todosReducer = (state = initialState, action) => {
           nextState[todo.id] = todo;
         });
         return nextState;
-
       case RECEIVE_TODO:
         const newTodo = {[action.todo.id]: action.todo};
         return Object.assign({}, state, newTodo);
-      
+      case REMOVE_TODO:
+        delete nextState[action.id];
+        return nextState; 
       default:
         return state;
     }
   };
   
   export default todosReducer;
-
-
-// switch (action.type) {
-//   case RECEIVE_TEA:
-//     debugger
-//     newState[action.tea.id] = action.tea;
-//     return newState;
-
-//   default:
-//     debugger
-//     return state;
-// }
-// }

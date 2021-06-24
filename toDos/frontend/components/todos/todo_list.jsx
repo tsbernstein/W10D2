@@ -1,20 +1,21 @@
 import React from 'react'; 
+import TodoForm from './todo_form';
 import { allTodos } from '../../reducers/selectors';
-import TodoListContainer from './todo_list_container';
 
 const DoList = (props) => {
-  debugger
-  const todosLis = props.allTodos.map( task => {
+  const todosLis = props.todos.map( task => {
     return (
-      <li key={task.id}> {task.title}</li>
+      <li key={`${task.id} + ${task.title}`}> {task.title}</li>
     )
   })
   return (
     <div>
-      <h3>Todo List goes here!</h3>
-      <ul>
-        {todosLis}
-      </ul>
+      <div>
+        <ul>
+          {todosLis}
+        </ul>
+      </div>
+      <TodoForm receiveTodo={ props.receiveTodo }/>
     </div>
   )
 }

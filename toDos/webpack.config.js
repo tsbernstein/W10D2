@@ -5,7 +5,8 @@ module.exports = {
   entry: "./frontend/todo_redux.jsx",
   output: {
     path: path.resolve(__dirname),
-    filename: './bundle.js'
+    filename: './bundle.js',
+    sourceMapFilename: "[name].js.map"
   },
   devtool: 'source-map',
   resolve: {
